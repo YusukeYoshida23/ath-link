@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
+Route::resource('post', PostController::class);
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,8 +22,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('post', [PostController::class, 'store'])
-->name('post.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -33,7 +33,24 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('post', [PostController::class, 'index']);
-Route::get('post/create',[PostController::class, 'create']);
+// Route::get('post', [PostController::class, 'index'])
+// ->name('post.index');
+
+// Route::get('post/create',[PostController::class, 'create']);
+
+// Route::post('post', [PostController::class, 'store'])
+// ->name('post.store');
+
+// Route::get('post/show/{post}', [PostController::class, 'show'])
+// ->name('post.show');
+
+// Route::get('post/{post}/edit', [PostController::class, 'edit'])
+// ->name('post.edit');
+
+// Route::patch('post/{post}', [PostController::class, 'update'])
+// ->name('post.update');
+
+// Route::delete('post/{post}', [PostController::class, 'destroy'])
+// ->name('post.destroy');
 
 require __DIR__.'/auth.php';
