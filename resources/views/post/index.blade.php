@@ -22,13 +22,24 @@
             </h1>
             <hr class="w-full">
             <p class="mt-4 p-4">
-                {{$post->body}}
+                {{Str::limit($post->body, 100, '...')}}
             </p>
             <div class="p-4 text-sm font-semibold">
                 <p>
                     {{$post->created_at}} / {{$post->user->name??'匿名'}}
                 </p>
             </div>
+            <hr class="w-full mb-2">
+            @if ($post->comments->count())
+            <span class="badge">
+                返信 {{$post->comments->count()}}件
+            </span>
+            @else
+            <span>コメントはまだありません</span>
+            @endif
+            <a href="{{route('post.show', $post)}}" style="color:white">
+                <x-primary-button class="float-right">コメントする</x-primary-button>
+            </a>
         </div>
         @endforeach
         <div class="mb-4">

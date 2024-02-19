@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 Route::resource('post', PostController::class);
 
@@ -33,24 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Route::get('post', [PostController::class, 'index'])
-// ->name('post.index');
-
-// Route::get('post/create',[PostController::class, 'create']);
-
-// Route::post('post', [PostController::class, 'store'])
-// ->name('post.store');
-
-// Route::get('post/show/{post}', [PostController::class, 'show'])
-// ->name('post.show');
-
-// Route::get('post/{post}/edit', [PostController::class, 'edit'])
-// ->name('post.edit');
-
-// Route::patch('post/{post}', [PostController::class, 'update'])
-// ->name('post.update');
-
-// Route::delete('post/{post}', [PostController::class, 'destroy'])
-// ->name('post.destroy');
+Route::post('post/comment/store', [CommentController::class, 'store'])->name('comment.store');
 
 require __DIR__.'/auth.php';
