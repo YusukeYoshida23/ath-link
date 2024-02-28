@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
 
 Route::get('post/mypost', [PostController::class, 'mypost'])->name('post.mypost');
 Route::get('post/mycomment', [PostController::class, 'mycomment'])->name('post.mycomment');
@@ -37,5 +38,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('post/comment/store', [CommentController::class, 'store'])->name('comment.store');
+
+Route::controller(ContactController::class)->group(function(){
+    Route::get('contact/create', 'create')->name('contact.create');
+    Route::post('contact/store', 'store')->name('contact.store');
+});
 
 require __DIR__.'/auth.php';
