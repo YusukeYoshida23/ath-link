@@ -17,12 +17,14 @@
                     {{ $post->title }}
                 </h1>
                 <div class="text-right flex">
+                    @can('update', $post)
                     <a href="{{route('post.edit', $post)}}" class="flex-1">
                         <x-primary-button>
                             編集
                         </x-primary-button>
                     </a>
-
+                    @endcan
+                    @can('delete', $post)
                     <form method="post" action="{{route('post.destroy', $post)}}" class="flex-2">
                         @csrf
                         @method('delete')
@@ -30,6 +32,7 @@
                             削除
                         </x-primary-button>
                     </form>
+                    @endcan
                 </div>
 
                 <hr class="w-full">

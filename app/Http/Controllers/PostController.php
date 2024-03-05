@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\Comment;
+// use Illuminate\Support\Facades\Gate;
+
 
 class PostController extends Controller
 {
@@ -22,6 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        // Gate::authorize('admin');
         return view('post.create');
     }
 
@@ -56,8 +59,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize('update', $post);
         return view('post.edit', compact('post'));
-
     }
 
     /**
@@ -65,6 +68,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $this->authorize('update', $post);
         $validated = $request->validate([
             'title' => 'required|max:20',
             'body' => 'required|max:400',
@@ -84,6 +88,7 @@ class PostController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Request $request, Post $post) {
+        $this->authorize('delete', $post);
         $post->comments()->delete();
         $post->delete();
         $request->session()->flash('message', '削除しました');
