@@ -13,9 +13,14 @@
         @endif
         <div class="bg-white w-full rounded-2xl">
             <div class="mt-4 p-4">
-                <h1 class="text-lg font-semibold">
-                    {{ $post->title }}
-                </h1>
+                <div class="flex">
+                    <div class="rounded-full w-12 h-12">
+                        <img src="{{asset('avatar/'.($post->user->avatar??'avatar/user_default.jpg'))}}" alt="">
+                    </div>
+                    <h1 class="text-lg font-semibold">
+                        {{ $post->title }}
+                    </h1>
+                </div>
                 <div class="text-right flex">
                     @can('update', $post)
                     <a href="{{route('post.edit', $post)}}" class="flex-1">
@@ -46,7 +51,10 @@
                 <div class="bg-white w-full rounded-2xl px-10 py-2 shadow-lg mt-8 whitespace-pre-line">
                     {{$comment->body}}
                     <div class="text-sm font-semibold flex flex-row-reverse">
-                        <p>{{ $comment->user->name }}・{{$comment->created_at->diffForHumans()}}</p>
+                        <p class="float-left pt-4">{{ $comment->user->name }}・{{$comment->created_at->diffForHumans()}}</p>
+                        <span class="rounded-full w-12 h-12">
+                            <img src="{{asset('public/avatar/'.($post->user->avatar??'public/avatar/user_default.jpg'))}}" alt="">
+                        </span>
                     </div>
                 </div>
                 @endforeach

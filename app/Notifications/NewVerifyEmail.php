@@ -54,15 +54,15 @@ class NewVerifyEmail extends VerifyEmail
         return ['mail'];
     }
 
-    public static $toMailCallback;
+    // public static $toMailCallback;
 
-    public function buildMailMessage($url)
-    {
-        return (new MailMessage)
-            ->subject('メールアドレスの確認')
-            ->line('ご登録ありがとうございます。')
-            ->line('新しいメンバーが増えて、とても嬉しいです。')
-            ->action('このボタンをクリック', $url)
-            ->line('上記ボタンをクリックすると、ご登録が完了します！');
-    }
+    // public function buildMailMessage($url)
+    // {
+    //     return (new MailMessage)
+    //         ->subject('メールアドレスの確認')
+    //         ->line('ご登録ありがとうございます。')
+    //         ->line('新しいメンバーが増えて、とても嬉しいです。')
+    //         ->action('このボタンをクリック', $url)
+    //         ->line('上記ボタンをクリックすると、ご登録が完了します！');
+    // }
 }
